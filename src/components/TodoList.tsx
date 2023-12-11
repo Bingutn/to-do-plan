@@ -7,7 +7,6 @@ import formatDate from "../utils/formatDate";
 import Input from "../ui/Input";
 import Button from "../ui/Button";
 import Form from "../ui/Form";
-import ConfirmDelete from "./ConfirmDelete";
 
 const StyledTodoList = styled.ul`
   width: 80%;
@@ -25,7 +24,10 @@ export default function TodoList() {
   const [dateInput, setDateInput] = useState<string>("");
   const [isCompleted, setIsCompleted] = useState<boolean>(false);
 
-  // const [confirmDelete, setConfirmDelete] = useState(false);
+  // to disabled when adding / updating / deleting
+  const [isAdding, setIsAdding] = useState(false);
+  const [isUpdating, setIsUpdating] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const [todoList, setTodoList] = useState<ITodo[]>([]);
 

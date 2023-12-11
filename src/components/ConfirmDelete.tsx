@@ -3,12 +3,14 @@ import Button from "../ui/Button";
 
 const StyledConfirmDeleteBox = styled.div`
   width: 100%;
-  height: auto;
-  background-color: aqua;
-  color: brown;
+  height: 110%;
+  background-color: var(--bg-submit);
+  color: var(--color-submit);
   display: grid;
   justify-items: center;
-  padding: 1rem;
+  align-content: center;
+
+  border-radius: 15px;
 `;
 
 const StyledBox = styled.div`
@@ -16,8 +18,10 @@ const StyledBox = styled.div`
   height: auto;
   display: flex;
   justify-content: center;
+  align-items: center;
+
   gap: 5rem;
-  margin: 2rem;
+  margin: 1rem;
 `;
 
 export default function ConfirmDelete({ onConfirmDelete, onCancelDelete }) {

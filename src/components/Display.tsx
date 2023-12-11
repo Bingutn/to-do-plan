@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { DisplayProps } from "../types/interfaces";
 import { useState } from "react";
 import formatDate from "../utils/formatDate";
@@ -30,7 +30,7 @@ const BackCard = styled.div`
   position: absolute;
   backface-visibility: hidden;
   display: grid;
-  grid-template-columns: 10vw 10vw 10vw 10vw 10vw;
+  grid-template-columns: 20vw 15vw 10vw 10vw;
   gap: 5rem;
   align-content: center;
   align-items: center;
@@ -40,6 +40,7 @@ const BackCard = styled.div`
   box-shadow: 0 5px 8px black;
 
   background-color: var(--color-text);
+  color: var(--color-main);
 
   transform: rotateY(180deg);
 `;
@@ -53,7 +54,6 @@ const StyledTodo = styled.li`
 
   text-align: center;
   margin: 3rem 0;
-  background-color: blue;
 
   position: relative;
   transform-style: preserve-3d;

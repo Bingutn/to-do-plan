@@ -44,7 +44,7 @@ const variations = {
     &::after {
       content: " ?";
       opacity: 0;
-      transition: opacity 0.3s ease-in 0.5s;
+      transition: opacity 0.3s ease-in 0.1s;
     }
 
     &:hover {
@@ -56,7 +56,7 @@ const variations = {
     &:hover::after {
       content: " ?";
       opacity: 1;
-      transition: opacity ease-out 0.5s;
+      transition: opacity ease-in 0.3s;
     }
   `,
 };

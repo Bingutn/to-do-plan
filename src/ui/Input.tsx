@@ -2,8 +2,11 @@ import styled, { css } from "styled-components";
 
 const types = {
   text: css`
+    transition: width 0.3s ease-in-out;
+
     &:focus {
       outline: none;
+      width: 100%;
     }
   `,
   date: css`
@@ -18,7 +21,8 @@ const types = {
   `,
   checkbox: css`
     cursor: grab;
-    height: 30px;
+    height: 25px;
+    width: 25px;
 
     &:active {
       cursor: grabbing;
