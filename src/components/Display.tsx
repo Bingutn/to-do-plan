@@ -65,6 +65,9 @@ export default function Display({
   onComplete,
   onUpdate,
   onDelete,
+
+  setAlertNotice,
+  setSuccessNotice,
 }: DisplayProps) {
   const { id, plan, planDate, completed } = todo;
 
@@ -82,6 +85,7 @@ export default function Display({
 
   function handleDeleteTodo() {
     onDelete(id);
+    setSuccessNotice("Successfully to delete plan!");
     setConfirmDelete(false);
   }
 
@@ -96,7 +100,12 @@ export default function Display({
     >
       {edit ? (
         <BackCard>
-          <EditTodo onUpdate={onUpdate} todo={todo} setEdit={setEdit} />
+          <EditTodo
+            onUpdate={onUpdate}
+            todo={todo}
+            setEdit={setEdit}
+            setAlertNotice={setAlertNotice}
+          />
         </BackCard>
       ) : (
         <>
@@ -108,7 +117,11 @@ export default function Display({
           ) : (
             <FrontCard>
               <span>
-                <Input type="checkbox" onClick={() => onComplete(id)} />
+                <Input
+                  type="checkbox"
+                  onClick={() => onComplete(id)}
+                  title="complete ?"
+                />
               </span>
               <p>{plan}</p>
               <p>{formatDate(planDate)}</p>

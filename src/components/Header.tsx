@@ -10,6 +10,7 @@ const StyledHeader = styled.div`
   justify-content: center;
   align-items: center;
   box-shadow: 0 7px 2rem #e2dfd2;
+  z-index: 10;
 `;
 
 export default function Header() {

@@ -2,6 +2,7 @@ import { useState } from "react";
 import StyledInput from "../ui/Input";
 import StyledButton from "../ui/Button";
 import styled from "styled-components";
+import formatDate from "../utils/formatDate";
 
 const StyledBox = styled.div`
   width: 100%;
@@ -23,14 +24,19 @@ const StyledLabel = styled.label`
   gap: 10px;
 `;
 
-export default function EditTodo({ todo, onUpdate, setEdit }) {
+export default function EditTodo({ todo, onUpdate, setEdit, setAlertNotice }) {
   const { id, plan, planDate } = todo;
 
+  const thePlanDate = formatDate(planDate);
+
   const [updatedPlan, setUpdatedPlan] = useState(plan);
-  const [updatedDate, setUpdatedDate] = useState(planDate);
+  const [updatedDate, setUpdatedDate] = useState(thePlanDate);
   const [checked, setChecked] = useState(false);
 
   function handleUpdate() {
+    if (!updatedPlan) return setAlertNotice("Please update your plan");
+    if (!updatedDate) return setAlertNotice("Please provide a new date plan");
+
     onUpdate(id, updatedPlan, updatedDate);
     setEdit(false);
     setChecked(false);
@@ -42,8 +48,9 @@ export default function EditTodo({ todo, onUpdate, setEdit }) {
         type="text"
         name="plan"
         value={updatedPlan}
-        defaultValue={plan}
         onChange={(e) => setUpdatedPlan(e.target.value)}
+        onFocus={() => setUpdatedPlan("")}
+        title="if click, the current plan will be cleared"
       />
 
       {checked ? (
@@ -51,18 +58,18 @@ export default function EditTodo({ todo, onUpdate, setEdit }) {
           name="date"
           type="date"
           value={updatedDate}
-          defaultValue={planDate}
           onChange={(e) => setUpdatedDate(e.target.value)}
+          required
         />
       ) : (
         <StyledBox>
-          {planDate}
+          {thePlanDate}
           <StyledLabel>
             <StyledInput
               type="checkbox"
               name="checkDate"
               onChange={(e) => setChecked(e.target.checked)}
-              checked={checked}
+              onClick={() => setUpdatedDate("")}
             />
             <p>Change date</p>
           </StyledLabel>

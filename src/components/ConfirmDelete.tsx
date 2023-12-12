@@ -10,6 +10,7 @@ const StyledConfirmDeleteBox = styled.div`
   justify-items: center;
   align-content: center;
 
+  box-shadow: 0 5px 8px #e2dfd2;
   border-radius: 15px;
 `;
 

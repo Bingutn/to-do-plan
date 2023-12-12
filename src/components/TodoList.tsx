@@ -8,26 +8,43 @@ import Input from "../ui/Input";
 import Button from "../ui/Button";
 import Form from "../ui/Form";
 
+const StyledPage = styled.div`
+  width: 100%;
+  height: 90%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  justify-content: space-around;
+`;
+
 const StyledTodoList = styled.ul`
   width: 80%;
   height: 60%;
   border: none;
   display: block;
-  overflow-y: scroll;
-  scroll-behavior: smooth;
   align-items: center;
   justify-content: center;
+
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+  &::-webkit-scrollbar-track {
+    background: #e0e0e0;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--shadow-1);
+    border-radius: 5px;
+  }
 `;
 
-export default function TodoList() {
+export default function TodoList({ setAlertNotice, setSuccessNotice }) {
   const [planInput, setPlanInput] = useState<string>("");
   const [dateInput, setDateInput] = useState<string>("");
   const [isCompleted, setIsCompleted] = useState<boolean>(false);
-
-  // to disabled when adding / updating / deleting
-  const [isAdding, setIsAdding] = useState(false);
-  const [isUpdating, setIsUpdating] = useState(false);
-  const [isDeleting, setIsDeleting] = useState(false);
 
   const [todoList, setTodoList] = useState<ITodo[]>([]);
 
@@ -45,15 +62,18 @@ export default function TodoList() {
       completed: isCompleted,
     };
 
-    if (!planInput) return window.alert("Please fill your plan");
-    if (!dateInput) return window.alert("Please select your date plan");
+    if (!planInput) return setAlertNotice("Please enter your plan");
+    if (!dateInput) return setAlertNotice("Please select your date plan");
 
     setTodoList([...todoList, newTodo]);
+    setSuccessNotice("Your new plan was added successfully!");
 
     setPlanInput("");
     setDateInput("");
     setIsCompleted(false);
   }
+
+  // toggel todo checkbox to complete the plan
 
   function completePlan(id: string) {
     setTodoList(
@@ -74,6 +94,7 @@ export default function TodoList() {
         : todo
     );
     setTodoList(newUpdate);
+    setSuccessNotice("Updated your plan successfully!");
   }
 
   function deleteTodo(id: string) {
@@ -82,7 +103,7 @@ export default function TodoList() {
   }
 
   return (
-    <>
+    <StyledPage>
       <Form onSubmit={handleSubmitTodo} size={hasTodo ? "small" : "medium"}>
         <Input
           type="text"
@@ -110,12 +131,14 @@ export default function TodoList() {
               onComplete={completePlan}
               onUpdate={updateTodo}
               onDelete={deleteTodo}
+              setAlertNotice={setAlertNotice}
+              setSuccessNotice={setSuccessNotice}
             />
           ))}
         </StyledTodoList>
       ) : (
         ""
       )}
-    </>
+    </StyledPage>
   );
 }
