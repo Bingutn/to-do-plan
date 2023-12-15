@@ -27,8 +27,8 @@ const StyledBox = styled.div`
   width: 100%;
   height: 100%;
   display: grid;
-  justify-content: center;
-  align-items: center;
+  grid-template-columns: 20vw 15vw 20vw;
+  gap: 1em;
 
   @media ${device.mobile} {
     width: 100%;
@@ -101,7 +101,7 @@ export default function EditTodo({
           required
         />
       ) : (
-        <>
+        <StyledLabel>
           {thePlanDate}
           <StyledLabel>
             <StyledInput
@@ -113,7 +113,7 @@ export default function EditTodo({
             />
             <p>Change date</p>
           </StyledLabel>
-        </>
+        </StyledLabel>
       )}
       <StyledButton>
         {(updatedPlan !== plan || checked) && (

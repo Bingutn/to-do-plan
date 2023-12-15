@@ -40,7 +40,7 @@ const BackCard = styled.div`
   position: absolute;
   backface-visibility: hidden;
   display: grid;
-  grid-template-columns: 20vw 15vw 20vw;
+  /* grid-template-columns: 20vw 15vw 20vw; */
   gap: 5rem;
   align-content: center;
   align-items: center;
