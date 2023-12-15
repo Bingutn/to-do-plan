@@ -1,16 +1,42 @@
 import { useState } from "react";
 import StyledInput from "../ui/Input";
-import StyledButton from "../ui/Button";
 import styled from "styled-components";
 import formatDate from "../utils/formatDate";
+import Button from "../ui/Button";
+import { IEditProps } from "../types/interfaces";
+import { device } from "../ui/MediaSize";
+
+const StyledButton = styled.div`
+  width: 100%;
+  height: 100%;
+  border: none;
+  gap: 10px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+
+  @media ${device.mobile} {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+`;
 
 const StyledBox = styled.div`
   width: 100%;
   height: 100%;
   display: grid;
-  row-gap: 10px;
   justify-content: center;
   align-items: center;
+
+  @media ${device.mobile} {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding: 5px;
+    gap: 10px;
+  }
 `;
 
 const StyledLabel = styled.label`
@@ -21,10 +47,23 @@ const StyledLabel = styled.label`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  gap: 10px;
+
+  @media ${device.mobile} {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+  }
 `;
 
-export default function EditTodo({ todo, onUpdate, setEdit, setAlertNotice }) {
+export default function EditTodo({
+  todo,
+  onUpdate,
+  setEdit,
+  setAlertNotice,
+}: IEditProps) {
   const { id, plan, planDate } = todo;
 
   const thePlanDate = formatDate(planDate);
@@ -43,7 +82,7 @@ export default function EditTodo({ todo, onUpdate, setEdit, setAlertNotice }) {
   }
 
   return (
-    <>
+    <StyledBox>
       <StyledInput
         type="text"
         name="plan"
@@ -62,7 +101,7 @@ export default function EditTodo({ todo, onUpdate, setEdit, setAlertNotice }) {
           required
         />
       ) : (
-        <StyledBox>
+        <>
           {thePlanDate}
           <StyledLabel>
             <StyledInput
@@ -70,17 +109,22 @@ export default function EditTodo({ todo, onUpdate, setEdit, setAlertNotice }) {
               name="checkDate"
               onChange={(e) => setChecked(e.target.checked)}
               onClick={() => setUpdatedDate("")}
+              style={{ width: "30%", height: "20%" }}
             />
             <p>Change date</p>
           </StyledLabel>
-        </StyledBox>
+        </>
       )}
-      <StyledButton variation="primary" onClick={handleUpdate}>
-        Submit
+      <StyledButton>
+        {(updatedPlan !== plan || checked) && (
+          <Button variation="primary" onClick={handleUpdate}>
+            Submit
+          </Button>
+        )}
+        <Button variation="secondary" onClick={() => setEdit(false)}>
+          Cancel
+        </Button>
       </StyledButton>
-      <StyledButton variation="danger" onClick={() => setEdit(false)}>
-        Cancel
-      </StyledButton>
-    </>
+    </StyledBox>
   );
 }

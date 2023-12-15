@@ -3,18 +3,21 @@ import Header from "./Header";
 import TodoList from "./TodoList";
 import { useState } from "react";
 import AlertMessage from "../ui/AlertMessage";
+import { device } from "../ui/MediaSize";
 
 const StyledLayout = styled.div`
-  width: 100vw;
-  height: 100vh;
+  width: 100svw;
+  height: 100svh;
   background-color: #f8f8ff;
-  /* position: fixed;
-  display: flex;
-  justify-content: center; */
 
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media ${device.mobile} {
+    width: 100%;
+    height: 91svh;
+  }
 `;
 
 const StyledContentBox = styled.div`
@@ -24,9 +27,6 @@ const StyledContentBox = styled.div`
   align-items: center;
   flex-direction: column;
   justify-content: space-around;
-
-  /* position: fixed; */
-  /* top: 15vh; */
 `;
 
 export default function Layout() {
@@ -58,12 +58,7 @@ export default function Layout() {
         <AlertMessage variation="success">{successNotice}</AlertMessage>
       )}
 
-      <StyledContentBox>
-        <TodoList
-          setAlertNotice={warningAlert}
-          setSuccessNotice={successAlert}
-        />
-      </StyledContentBox>
+      <TodoList setAlertNotice={warningAlert} setSuccessNotice={successAlert} />
     </StyledLayout>
   );
 }

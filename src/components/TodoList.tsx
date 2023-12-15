@@ -1,12 +1,13 @@
 import styled from "styled-components";
 import Display from "./Display";
 import { useState } from "react";
-import { ITodo } from "../types/interfaces";
+import { ITodo, ITodoListProps } from "../types/interfaces";
 import { generateId } from "../utils/generateId";
 import formatDate from "../utils/formatDate";
 import Input from "../ui/Input";
 import Button from "../ui/Button";
 import Form from "../ui/Form";
+import { device } from "../ui/MediaSize";
 
 const StyledPage = styled.div`
   width: 100%;
@@ -14,8 +15,15 @@ const StyledPage = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  justify-content: center;
   justify-content: space-around;
+
+  @media ${device.mobile} {
+    width: 100%;
+    height: 100%;
+    gap: 2em;
+    padding: 20px;
+    justify-content: center;
+  }
 `;
 
 const StyledTodoList = styled.ul`
@@ -39,9 +47,17 @@ const StyledTodoList = styled.ul`
     background-color: var(--shadow-1);
     border-radius: 5px;
   }
+
+  @media ${device.mobile} {
+    width: 100%;
+    height: 80%;
+  }
 `;
 
-export default function TodoList({ setAlertNotice, setSuccessNotice }) {
+export default function TodoList({
+  setAlertNotice,
+  setSuccessNotice,
+}: ITodoListProps) {
   const [planInput, setPlanInput] = useState<string>("");
   const [dateInput, setDateInput] = useState<string>("");
   const [isCompleted, setIsCompleted] = useState<boolean>(false);

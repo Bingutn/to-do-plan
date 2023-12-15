@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { device } from "./MediaSize";
 
 const types = {
   text: css`
@@ -44,6 +45,12 @@ const Input = styled.input`
   color: var(--color-text);
 
   ${(props) => types[props.type]}
+
+  @media ${device.mobile} {
+    width: 50%;
+    height: 50%;
+    font-size: x-small;
+  }
 `;
 
 export default Input;

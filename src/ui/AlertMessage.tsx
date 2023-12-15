@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { device } from "./MediaSize";
 
 const variations = {
   success: css`
@@ -7,8 +8,6 @@ const variations = {
 
     &::before {
       content: "✅";
-      font-size: large;
-      margin-right: 8px;
     }
   `,
 
@@ -18,8 +17,6 @@ const variations = {
 
     &::before {
       content: "⚠️";
-      font-size: large;
-      margin-right: 8px;
     }
   `,
 };
@@ -30,7 +27,7 @@ const AlertMessage = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.4rem;
+  font-size: small;
   padding: 15px 55px;
   z-index: 11;
 
@@ -40,10 +37,22 @@ const AlertMessage = styled.div`
   display: flex;
   align-items: center;
   position: fixed;
-  margin-top: 100px;
+  margin-top: 80px;
   min-width: fit-content;
 
   ${(props) => variations[props.variation]}
+
+  &::before {
+    margin-right: 8px;
+  }
+
+  @media ${device.mobile} {
+    width: auto;
+    font-size: x-small;
+    padding: 2px 5px;
+    margin-top: 40px;
+    background-color: #fafafa;
+  }
 `;
 
 AlertMessage.defaultProps = {
