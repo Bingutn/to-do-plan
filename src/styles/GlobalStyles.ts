@@ -37,6 +37,7 @@ body {
   font-size: 1.6rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+
 }
 
 input,
@@ -45,6 +46,7 @@ textarea,
 select {
   font: inherit;
   color: inherit;
+
 }
 
 button {

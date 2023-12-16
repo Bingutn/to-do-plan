@@ -1,10 +1,22 @@
 import styled, { css } from "styled-components";
+import { device } from "./MediaSize";
 
 const sizes = {
   small: css`
     width: 60%;
     height: 15%;
     align-items: center;
+
+    @media ${device.tablet} {
+      width: 100%;
+    }
+
+    @media ${device.mobile} {
+      width: 100%;
+      height: 30%;
+      gap: 10px;
+      padding: 15px;
+    }
   `,
 
   medium: css`
@@ -16,6 +28,18 @@ const sizes = {
     &:hover {
       box-shadow: 0 0 30px 2px var(--hover-1);
       transition: box-shadow 0.5s;
+    }
+
+    @media ${device.tablet} {
+      width: 80%;
+    }
+
+    @media ${device.mobile} {
+      width: 90%;
+      height: 50%;
+      box-shadow: -2px 5px 1rem #e2dfd2;
+      gap: 20px;
+      padding: 20px;
     }
   `,
 };

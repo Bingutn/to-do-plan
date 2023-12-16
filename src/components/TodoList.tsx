@@ -1,31 +1,79 @@
 import styled from "styled-components";
 import Display from "./Display";
 import { useState } from "react";
-import { ITodo } from "../types/interfaces";
+import { ITodo, ITodoListProps } from "../types/interfaces";
 import { generateId } from "../utils/generateId";
 import formatDate from "../utils/formatDate";
 import Input from "../ui/Input";
 import Button from "../ui/Button";
 import Form from "../ui/Form";
-import ConfirmDelete from "./ConfirmDelete";
+import { device } from "../ui/MediaSize";
+
+const StyledPage = styled.div`
+  width: 100%;
+  height: 90%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+
+  @media ${device.mobile} {
+    width: 100%;
+    height: 100%;
+    gap: 2em;
+    padding: 20px;
+    justify-content: center;
+  }
+
+  @media ${device.tablet} {
+    width: 100%;
+    height: 90%;
+    gap: 2em;
+    padding: 20px;
+    justify-content: center;
+  }
+`;
 
 const StyledTodoList = styled.ul`
   width: 80%;
   height: 60%;
   border: none;
   display: block;
-  overflow-y: scroll;
-  scroll-behavior: smooth;
   align-items: center;
   justify-content: center;
+
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+  &::-webkit-scrollbar-track {
+    background: #e0e0e0;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--shadow-1);
+    border-radius: 5px;
+  }
+
+  @media ${device.mobile} {
+    width: 100%;
+    height: 80%;
+  }
+
+  @media ${device.tablet} {
+    width: 100%;
+    height: 50%;
+  }
 `;
 
-export default function TodoList() {
+export default function TodoList({
+  setAlertNotice,
+  setSuccessNotice,
+}: ITodoListProps) {
   const [planInput, setPlanInput] = useState<string>("");
   const [dateInput, setDateInput] = useState<string>("");
   const [isCompleted, setIsCompleted] = useState<boolean>(false);
-
-  // const [confirmDelete, setConfirmDelete] = useState(false);
 
   const [todoList, setTodoList] = useState<ITodo[]>([]);
 
@@ -43,15 +91,18 @@ export default function TodoList() {
       completed: isCompleted,
     };
 
-    if (!planInput) return window.alert("Please fill your plan");
-    if (!dateInput) return window.alert("Please select your date plan");
+    if (!planInput) return setAlertNotice("Please enter your plan");
+    if (!dateInput) return setAlertNotice("Please select your date plan");
 
     setTodoList([...todoList, newTodo]);
+    setSuccessNotice("Your new plan was added successfully!");
 
     setPlanInput("");
     setDateInput("");
     setIsCompleted(false);
   }
+
+  // toggel todo checkbox to complete the plan
 
   function completePlan(id: string) {
     setTodoList(
@@ -72,6 +123,7 @@ export default function TodoList() {
         : todo
     );
     setTodoList(newUpdate);
+    setSuccessNotice("Updated your plan successfully!");
   }
 
   function deleteTodo(id: string) {
@@ -80,7 +132,7 @@ export default function TodoList() {
   }
 
   return (
-    <>
+    <StyledPage>
       <Form onSubmit={handleSubmitTodo} size={hasTodo ? "small" : "medium"}>
         <Input
           type="text"
@@ -108,12 +160,14 @@ export default function TodoList() {
               onComplete={completePlan}
               onUpdate={updateTodo}
               onDelete={deleteTodo}
+              setAlertNotice={setAlertNotice}
+              setSuccessNotice={setSuccessNotice}
             />
           ))}
         </StyledTodoList>
       ) : (
         ""
       )}
-    </>
+    </StyledPage>
   );
 }

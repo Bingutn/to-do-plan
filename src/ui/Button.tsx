@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { device } from "./MediaSize";
 
 const sizes = {
   small: css`
@@ -21,17 +22,18 @@ const variations = {
       box-shadow: 0 8px 5px var(--shadow-1);
       transition: box-shadow 0.3s ease-in-out, letter-spacing 0.3s, color 0.3s;
     }
-
-    &:disabled {
-      background-color: grey;
-    }
   `,
+
   secondary: css`
     color: var(--color-submit);
     background: var(--bg-submit);
+    transition: box-shadow 0.5s ease-in-out, color 1s;
 
     &:hover {
-      background-color: #f8dfd4;
+      background-color: var(--color-main);
+      color: var(--text-hover);
+      box-shadow: 0 8px 5px var(--shadow-1);
+      transition: box-shadow 0.3s ease-in-out;
     }
   `,
 
@@ -44,7 +46,7 @@ const variations = {
     &::after {
       content: " ?";
       opacity: 0;
-      transition: opacity 0.3s ease-in 0.5s;
+      transition: opacity 0.3s ease-in 0.1s;
     }
 
     &:hover {
@@ -56,7 +58,7 @@ const variations = {
     &:hover::after {
       content: " ?";
       opacity: 1;
-      transition: opacity ease-out 0.5s;
+      transition: opacity ease-in 0.3s;
     }
   `,
 };
@@ -70,6 +72,21 @@ const Button = styled.button`
 
   ${(props) => sizes[props.size]}
   ${(props) => variations[props.variation]}
+
+
+  @media ${device.tablet} {
+    width: 70%;
+    font-size: small;
+  }
+
+  @media ${device.mobile} {
+    width: 50%;
+    height: 50%;
+    text-align: center;
+    border-radius: 10px;
+    font-size: x-small;
+    box-shadow: 0 2px 1px var(--shadow-1);
+  }
 `;
 
 Button.defaultProps = {

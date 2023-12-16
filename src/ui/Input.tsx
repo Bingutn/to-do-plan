@@ -1,9 +1,13 @@
 import styled, { css } from "styled-components";
+import { device } from "./MediaSize";
 
 const types = {
   text: css`
+    transition: width 0.3s ease-in-out;
+
     &:focus {
       outline: none;
+      width: 100%;
     }
   `,
   date: css`
@@ -18,7 +22,8 @@ const types = {
   `,
   checkbox: css`
     cursor: grab;
-    height: 30px;
+    height: 25px;
+    width: 25px;
 
     &:active {
       cursor: grabbing;
@@ -40,6 +45,17 @@ const Input = styled.input`
   color: var(--color-text);
 
   ${(props) => types[props.type]}
+
+  @media ${device.tablet} {
+    width: 100%;
+    font-size: small;
+  }
+
+  @media ${device.mobile} {
+    width: 80%;
+    height: 50%;
+    font-size: x-small;
+  }
 `;
 
 export default Input;
