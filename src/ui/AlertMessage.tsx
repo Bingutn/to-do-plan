@@ -1,6 +1,10 @@
 import styled, { css } from "styled-components";
 import { device } from "./MediaSize";
 
+interface AlertMessageProps {
+  variation?: "success" | "warning";
+}
+
 const variations = {
   success: css`
     border: 2px solid #72ef40;
@@ -21,7 +25,7 @@ const variations = {
   `,
 };
 
-const AlertMessage = styled.div`
+const AlertMessage = styled.div<AlertMessageProps>`
   width: auto;
   height: 30px;
   display: flex;
@@ -40,7 +44,7 @@ const AlertMessage = styled.div`
   margin-top: 80px;
   min-width: fit-content;
 
-  ${(props) => variations[props.variation]}
+  ${(props) => variations[props.variation || "warning"]}
 
   &::before {
     margin-right: 8px;

@@ -1,6 +1,11 @@
 import styled, { css } from "styled-components";
 import { device } from "./MediaSize";
 
+interface ButtonProps {
+  variation?: "primary" | "secondary" | "danger";
+  size?: "small" | "medium";
+}
+
 const sizes = {
   small: css`
     width: 30%;
@@ -63,15 +68,15 @@ const variations = {
   `,
 };
 
-const Button = styled.button`
+const Button = styled.button<ButtonProps>`
   border: none;
   text-align: center;
   height: 50px;
   border-radius: 20px;
   box-shadow: 0 2px 1px var(--shadow-1);
 
-  ${(props) => sizes[props.size]}
-  ${(props) => variations[props.variation]}
+  ${(props) => sizes[props.size || "small"]}
+  ${(props) => variations[props.variation || "secondary" || "danger"]}
 
 
   @media ${device.tablet} {

@@ -1,6 +1,10 @@
 import styled, { css } from "styled-components";
 import { device } from "./MediaSize";
 
+interface InputProps {
+  type?: "text" | "date" | "checkbox";
+}
+
 const types = {
   text: css`
     transition: width 0.3s ease-in-out;
@@ -34,7 +38,7 @@ const types = {
   `,
 };
 
-const Input = styled.input`
+const Input = styled.input<InputProps>`
   width: 90%;
   height: 60px;
   background-color: var(--color-sub);
@@ -44,7 +48,7 @@ const Input = styled.input`
   position: relative;
   color: var(--color-text);
 
-  ${(props) => types[props.type]}
+  ${(props) => types[props.type || "date" || "checkbox"]}
 
   @media ${device.tablet} {
     width: 100%;

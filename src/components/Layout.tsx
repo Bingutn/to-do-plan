@@ -25,15 +25,6 @@ const StyledLayout = styled.div`
   }
 `;
 
-const StyledContentBox = styled.div`
-  width: 100%;
-  height: 89%;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: space-around;
-`;
-
 export default function Layout() {
   const [alertNotice, setAlertNotice] = useState("");
   const [successNotice, setSuccessNotice] = useState("");

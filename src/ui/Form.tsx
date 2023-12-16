@@ -1,6 +1,10 @@
 import styled, { css } from "styled-components";
 import { device } from "./MediaSize";
 
+interface FormProps {
+  size?: "small" | "medium";
+}
+
 const sizes = {
   small: css`
     width: 60%;
@@ -44,7 +48,7 @@ const sizes = {
   `,
 };
 
-const Form = styled.form`
+const Form = styled.form<FormProps>`
   border-radius: 15px;
   padding: 6rem;
   display: flex;
@@ -54,7 +58,7 @@ const Form = styled.form`
   background-color: var(--color-main);
   box-shadow: -5px 10px 2rem #e2dfd2;
 
-  ${(props) => sizes[props.size]}
+  ${(props) => sizes[props.size || "small"]}
 `;
 
 Form.defaultProps = {
