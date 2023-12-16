@@ -23,9 +23,14 @@ const FrontCard = styled.div`
   box-shadow: 0 5px 8px #e2dfd2;
   background-color: var(--color-main);
 
+  @media ${device.tablet} {
+    width: 100%;
+    height: 55%;
+  }
+
   @media ${device.mobile} {
     width: 100%;
-    height: 80%;
+    height: 100%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -54,13 +59,16 @@ const BackCard = styled.div`
 
   transform: rotateY(180deg);
 
+  @media ${device.tablet} {
+    width: 100%;
+    height: 55%;
+  }
+
   @media ${device.mobile} {
     font-size: x-small;
     box-shadow: none;
-
     width: 100%;
-    height: 80%;
-
+    height: 100%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -82,19 +90,30 @@ const StyledTodo = styled.li`
   position: relative;
   transform-style: preserve-3d;
 
+  @media ${device.tablet} {
+    font-size: small;
+    box-shadow: none;
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    margin: 12px 0;
+    box-shadow: 0 5px 8px #e2dfd2;
+  }
+
   @media ${device.mobile} {
     font-size: x-small;
     box-shadow: none;
     width: 100%;
-    height: 80%;
+    height: 150px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     gap: 5px;
-    padding: 10px;
     justify-content: center;
     align-items: center;
-    margin: 0;
+    margin: 13px 0;
+    box-shadow: 0 5px 8px #e2dfd2;
   }
 `;
 
@@ -105,6 +124,14 @@ const StyledButton = styled.div`
   gap: 10px;
   display: flex;
   text-align: center;
+
+  @media ${device.tablet} {
+    width: 100%;
+    height: 80%;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+  }
 
   @media ${device.mobile} {
     width: 100%;
@@ -173,7 +200,7 @@ export default function Display({
             />
           ) : (
             <FrontCard>
-              <span style={{ width: "10%", height: "20%" }}>
+              <span>
                 <Input
                   type="checkbox"
                   onClick={() => onComplete(id)}

@@ -7,9 +7,13 @@ const sizes = {
     height: 15%;
     align-items: center;
 
+    @media ${device.tablet} {
+      width: 100%;
+    }
+
     @media ${device.mobile} {
       width: 100%;
-      height: 40%;
+      height: 30%;
       gap: 10px;
       padding: 15px;
     }
@@ -24,6 +28,10 @@ const sizes = {
     &:hover {
       box-shadow: 0 0 30px 2px var(--hover-1);
       transition: box-shadow 0.5s;
+    }
+
+    @media ${device.tablet} {
+      width: 80%;
     }
 
     @media ${device.mobile} {

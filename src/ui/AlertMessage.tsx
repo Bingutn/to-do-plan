@@ -46,11 +46,19 @@ const AlertMessage = styled.div`
     margin-right: 8px;
   }
 
+  @media ${device.tablet} {
+    width: auto;
+    font-size: small;
+    padding: 2px 5px;
+    margin-top: 60px;
+    background-color: #fafafa;
+  }
+
   @media ${device.mobile} {
     width: auto;
     font-size: x-small;
     padding: 2px 5px;
-    margin-top: 40px;
+    margin-top: 55px;
     background-color: #fafafa;
   }
 `;

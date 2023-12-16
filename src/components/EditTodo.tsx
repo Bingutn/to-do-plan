@@ -15,11 +15,20 @@ const StyledButton = styled.div`
   text-align: center;
   align-items: center;
 
+  @media ${device.tablet} {
+    width: 100%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
   @media ${device.mobile} {
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
   }
 `;
 
@@ -30,12 +39,24 @@ const StyledBox = styled.div`
   grid-template-columns: 20vw 15vw 20vw;
   gap: 1em;
 
+  @media ${device.tablet} {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding: 5px;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+  }
+
   @media ${device.mobile} {
     width: 100%;
     height: 100%;
     display: flex;
     padding: 5px;
     gap: 10px;
+    align-items: center;
+    justify-content: center;
   }
 `;
 
@@ -45,8 +66,19 @@ const StyledLabel = styled.label`
 
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  justify-content: center;
+  align-items: center;
+
+  @media ${device.tablet} {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+  }
 
   @media ${device.mobile} {
     width: 100%;
@@ -103,7 +135,7 @@ export default function EditTodo({
       ) : (
         <StyledLabel>
           {thePlanDate}
-          <StyledLabel>
+          <>
             <StyledInput
               type="checkbox"
               name="checkDate"
@@ -112,7 +144,7 @@ export default function EditTodo({
               style={{ width: "30%", height: "20%" }}
             />
             <p>Change date</p>
-          </StyledLabel>
+          </>
         </StyledLabel>
       )}
       <StyledButton>

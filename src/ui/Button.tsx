@@ -73,6 +73,12 @@ const Button = styled.button`
   ${(props) => sizes[props.size]}
   ${(props) => variations[props.variation]}
 
+
+  @media ${device.tablet} {
+    width: 70%;
+    font-size: small;
+  }
+
   @media ${device.mobile} {
     width: 50%;
     height: 50%;

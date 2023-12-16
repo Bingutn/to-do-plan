@@ -18,6 +18,11 @@ const StyledLayout = styled.div`
     width: 100%;
     height: 91svh;
   }
+
+  @media ${device.tablet} {
+    width: 100%;
+    height: 100svh;
+  }
 `;
 
 const StyledContentBox = styled.div`

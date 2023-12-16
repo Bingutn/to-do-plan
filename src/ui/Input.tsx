@@ -46,8 +46,13 @@ const Input = styled.input`
 
   ${(props) => types[props.type]}
 
+  @media ${device.tablet} {
+    width: 100%;
+    font-size: small;
+  }
+
   @media ${device.mobile} {
-    width: 50%;
+    width: 80%;
     height: 50%;
     font-size: x-small;
   }

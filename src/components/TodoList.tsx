@@ -24,6 +24,14 @@ const StyledPage = styled.div`
     padding: 20px;
     justify-content: center;
   }
+
+  @media ${device.tablet} {
+    width: 100%;
+    height: 90%;
+    gap: 2em;
+    padding: 20px;
+    justify-content: center;
+  }
 `;
 
 const StyledTodoList = styled.ul`
@@ -51,6 +59,11 @@ const StyledTodoList = styled.ul`
   @media ${device.mobile} {
     width: 100%;
     height: 80%;
+  }
+
+  @media ${device.tablet} {
+    width: 100%;
+    height: 50%;
   }
 `;
 

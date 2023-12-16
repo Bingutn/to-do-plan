@@ -15,9 +15,15 @@ const StyledConfirmDeleteBox = styled.div`
   box-shadow: 0 5px 8px #e2dfd2;
   border-radius: 15px;
 
+  @media ${device.tablet} {
+    width: 100%;
+    height: 100%;
+    justify-content: space-evenly;
+  }
+
   @media ${device.mobile} {
     width: 100%;
-    height: 80%;
+    height: 100%;
     display: grid;
     gap: 5px;
     justify-content: space-evenly;
