@@ -20,7 +20,8 @@ const StyledButton = styled.div`
     height: 70%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
+    gap: 5px;
   }
 
   @media ${device.mobile} {
@@ -78,6 +79,7 @@ const StyledLabel = styled.label`
     flex-direction: column;
     justify-content: center;
     gap: 10px;
+    font-size: x-small;
   }
 
   @media ${device.mobile} {

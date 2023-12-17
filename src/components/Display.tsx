@@ -26,6 +26,7 @@ const FrontCard = styled.div`
   @media ${device.tablet} {
     width: 100%;
     height: 55%;
+    gap: 2em;
   }
 
   @media ${device.mobile} {
@@ -128,7 +129,7 @@ const StyledButton = styled.div`
   @media ${device.tablet} {
     width: 100%;
     height: 80%;
-    gap: 5px;
+    gap: 1em;
     justify-content: center;
     align-items: center;
   }

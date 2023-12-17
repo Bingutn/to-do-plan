@@ -14,14 +14,13 @@ const StyledLayout = styled.div`
   flex-direction: column;
   align-items: center;
 
-  @media ${device.mobile} {
-    width: 100%;
-    height: 91svh;
-  }
-
   @media ${device.tablet} {
     width: 100%;
     height: 100svh;
+  }
+  @media ${device.mobile} {
+    width: 100%;
+    height: 91svh;
   }
 `;
 

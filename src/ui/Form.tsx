@@ -13,6 +13,9 @@ const sizes = {
 
     @media ${device.tablet} {
       width: 100%;
+      height: 20%;
+      gap: 10px;
+      padding: 1em;
     }
 
     @media ${device.mobile} {
@@ -36,6 +39,9 @@ const sizes = {
 
     @media ${device.tablet} {
       width: 80%;
+      height: 60%;
+      gap: 50px;
+      padding: 1.5em;
     }
 
     @media ${device.mobile} {
